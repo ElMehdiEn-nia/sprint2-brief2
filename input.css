@@ -1,0 +1,24 @@
+body{
+    background-color: rgb(0, 0, 0);
+}
+.press-start-2p-regular {
+  font-family: "Press Start 2P", system-ui;
+  font-size: medium;
+  font-weight: 400;
+  font-style: normal;
+  flex-direction: column;
+  flex-wrap: wrap;
+  
+  
+}
+h1{
+    position: relative;
+    width: max-content;
+    background-color: blue;
+}
+h1::after{
+    content: "";
+    background-color: darkblue;
+    height: 5px;
+    width: 100%;
+}
