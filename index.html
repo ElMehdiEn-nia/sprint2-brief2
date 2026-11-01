@@ -8,7 +8,7 @@
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between font-sans">
 
-    <header class="bg-slate-800 border-b border-slate-700 p-4 shadow-md">
+    <header class="bg-amber-900 border-b border-slate-700 p-4 shadow-md">
         <div class="max-w-md mx-auto flex justify-between items-center">
             <h1 class="text-lg font-bold text-amber-400">Empereur, Citoyen, Esclave</h1>
             <span id="player-display" class="text-sm bg-slate-700 px-3 py-1 rounded-full text-slate-300">Aucun joueur</span>
@@ -17,14 +17,14 @@
 
     <main class="max-w-md mx-auto p-4 w-full flex-grow flex flex-col justify-center space-y-6">
          <audio autoplay loop src="WhatsApp Audio 2026-10-29 at 12.49.55.mp4"></audio>
-         <h1 style="color: gold; background-color: blue;">Les règles du jeu</h1>
+         <h1 style="color: gold; background-color: blue;"><b>Les règles du jeu</b></h1>
          <ol>
             <li style="color:gold;"> Le Citoyen vainc l'Esclave</li>
             <li style="color: gold;"> L'Empereur vainc le Citoyen</li>
             <li style="color: gold;"> L'Esclave vainc l'Empereur</li>
 
-     
-        <section class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700">
+     <br><br>
+        <section class="bg-orange-950 p-6 rounded-xl shadow-lg border border-slate-700">
             <h2 class="text-xl font-semibold mb-4 text-center text-slate-200">Créer un profil</h2>
             <form id="profile-form" class="space-y-4">
                 <div>
@@ -33,12 +33,8 @@
                            class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
                            placeholder="Ton pseudo">
                     <p id="error-message" class="text-rose-500 text-xs mt-1 hidden">Le pseudo doit contenir entre 3 et 15 caractères (lettres, chiffres).</p>
-                </div>
-                <button type="submit" 
-                        class="w-full bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 font-semibold py-2.5 rounded-lg text-slate-950 transition-all shadow-md disabled:bg-slate-600 disabled:cursor-not-allowed disabled:text-slate-400">
-                    Enregistrer le profil
-                </button>
-                <label style="color: gold;">Ton Avatar</label>
+                    <br><br>
+                     <label style="color: gold;">Ton Avatar</label>
                 <select name="" id="">
                     <option value="👻">👻</option>
                     <option value="👑">👑</option>
@@ -49,12 +45,16 @@
                     <option value="🐉">🐉</option>
                     <option value="🦁">🦁</option>
                 </select>
+                </div>
+                
+                <button type="submit" class="w-full bg-yellow-400 hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 font-semibold py-2.5 rounded-lg text-slate-950 transition-all shadow-md disabled:bg-slate-600 disabled:cursor-not-allowed disabled:text-slate-400"> Enregistrer le profil
+                </button>
+               
             </form>
         </section>
 
-        <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center text-sm space-y-1">
+        <div class="bg-orange-950 p-4 rounded-xl border border-slate-700 text-center text-sm space-y-1">
             <p>Manche : <span class="font-bold text-amber-400">1 / 12</span> (Groupe 1 / 4)</p>
-            <p>Camp actuel : <span class="font-bold text-indigo-400">Empereur</span></p>
         </div>
 
         <section class="space-y-3">
@@ -77,8 +77,9 @@
         </section>
 
     </main>
-      <h2 style="color: rgb(255, 0, 0);">N'OUBLIEZ PAS</h2>
-    <p style="color: rgb(255, 0, 0);">Lorsque l'Esclave vainc l'Empereur,le gagnant reçoit 5 points</p>
+    <br><br>
+      <h2 style="color: rgb(255, 0, 0);" class="border-be-red-600 text-center text-sm" >N'OUBLIEZ PAS!!!</h2>
+    <p style="color: rgb(255, 0, 0);" class="border-be-red-600 text-center text-sm" >Lorsque l'Esclave vainc l'Empereur,le gagnant reçoit 5 points</p>
 
     <footer class="shadow p-4 text-center text-sm text-gray-600" style="color: rgb(255, 255, 255); border: 100px; border-style: initial;">
         <p>&copy; 2026 - Projet De El Mehdi En-nia</p>
