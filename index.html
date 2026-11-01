@@ -4,45 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empereur, Citoyen, Esclave</title>
-    <link rel="stylesheet" href="style.css">
-    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <script src="Script.js"></script>
-     <main id="app" class="container mx-auto p-4 flex-grow"></main>
-    <h1 style="background-color: honeydew;color: gold;">Empereur, Citoyen, Esclave</h1>
-    <p style="color: gold;">Qui va <b>gagné ?</b></p>
-    <audio autoplay loop src="WhatsApp Audio 2026-10-29 at 12.49.55.mp4"></audio>
-    <h1 style="color: gold;">Les règles du jeu</h1>
-    <ol>
-       <li style="color:gold;"> Le Citoyen vainc l'Esclave</li>
-       <li style="color: gold;"> L'Empereur vainc le Citoyen</li>
-       <li style="color: gold;"> L'Esclave vainc l'Empereur</li>
-    </ol>
-    <h1 style="color: white;">Créer votre compte</h1>
-    <label style="color: gold;">Ton nom:</label>
-    <input id="MonNom">
-    <label style="color: gold;">Ton Avatar</label>
-    <select name="" id="">
-        <option value="👻">👻</option>
-        <option value="👑">👑 </option>
-        <option value="⚔️">⚔️</option>
-        <option value="🛡️">🛡️</option>
-        <option value="🦊">🦊</option>
-        <option value="🐺">🐺</option>
-        <option value="🐉">🐉</option>
-        <option value="🦁">🦁</option>
-        <option value="👻">👻</option>
-    </select>
-<br><br>
-    <button id="Entrer">Entrer</button>
-    <h2 style="color: rgb(255, 0, 0);">N'OUBLIE PAS</h2>
-    <p style="color: rgb(255, 0, 0);">Lorsque l'Esclave vainc l'Empereur,le gagnant reçoit 5 points</p>
-   
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between font-sans">
+
+    <header class="bg-slate-800 border-b border-slate-700 p-4 shadow-md">
+        <div class="max-w-md mx-auto flex justify-between items-center">
+            <h1 class="text-lg font-bold text-amber-400">Empereur, Citoyen, Esclave</h1>
+            <span id="player-display" class="text-sm bg-slate-700 px-3 py-1 rounded-full text-slate-300">Aucun joueur</span>
+        </div>
+    </header>
+
+    <main class="max-w-md mx-auto p-4 w-full flex-grow flex flex-col justify-center space-y-6">
+         <audio autoplay loop src="WhatsApp Audio 2026-10-29 at 12.49.55.mp4"></audio>
+         <h1 style="color: gold; background-color: blue;">Les règles du jeu</h1>
+         <ol>
+            <li style="color:gold;"> Le Citoyen vainc l'Esclave</li>
+            <li style="color: gold;"> L'Empereur vainc le Citoyen</li>
+            <li style="color: gold;"> L'Esclave vainc l'Empereur</li>
+
      
-    
-</body>
-<footer class="bg-white shadow p-4 text-center text-sm text-gray-600" style="color: rgb(255, 255, 255); border: 100px; border-style: initial;">
+        <section class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700">
+            <h2 class="text-xl font-semibold mb-4 text-center text-slate-200">Créer un profil</h2>
+            <form id="profile-form" class="space-y-4">
+                <div>
+                    <label for="nickname" class="block text-sm font-medium text-slate-400 mb-1">Pseudo (3-15 caractères)</label>
+                    <input type="text" id="nickname" required 
+                           class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+                           placeholder="Ton pseudo">
+                    <p id="error-message" class="text-rose-500 text-xs mt-1 hidden">Le pseudo doit contenir entre 3 et 15 caractères (lettres, chiffres).</p>
+                </div>
+                <button type="submit" 
+                        class="w-full bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 font-semibold py-2.5 rounded-lg text-slate-950 transition-all shadow-md disabled:bg-slate-600 disabled:cursor-not-allowed disabled:text-slate-400">
+                    Enregistrer le profil
+                </button>
+                <label style="color: gold;">Ton Avatar</label>
+                <select name="" id="">
+                    <option value="👻">👻</option>
+                    <option value="👑">👑</option>
+                    <option value="⚔️">⚔️</option>
+                    <option value="🛡️">🛡️</option>
+                    <option value="🦊">🦊</option>
+                    <option value="🐺">🐺</option>
+                    <option value="🐉">🐉</option>
+                    <option value="🦁">🦁</option>
+                </select>
+            </form>
+        </section>
+
+        <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center text-sm space-y-1">
+            <p>Manche : <span class="font-bold text-amber-400">1 / 12</span> (Groupe 1 / 4)</p>
+            <p>Camp actuel : <span class="font-bold text-indigo-400">Empereur</span></p>
+        </div>
+
+        <section class="space-y-3">
+            <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider text-center">Vos cartes</h3>
+            <div class="grid grid-cols-3 gap-3">
+                <div class="bg-slate-800 border-2 border-slate-600 hover:border-amber-500 hover:-translate-y-1 transition-all p-4 rounded-xl text-center cursor-pointer shadow-md flex flex-col items-center justify-center h-28">
+                    
+                    <span class="font-bold text-white mt-1">Citoyen</span>
+                    <img src="citoyen.png">
+                </div>
+                <div class="bg-slate-800 border-2 border-slate-600 hover:border-amber-500 hover:-translate-y-1 transition-all p-4 rounded-xl text-center cursor-pointer shadow-md flex flex-col items-center justify-center h-28">
+                    <span class="font-bold text-amber-400 mt-1">Empereur</span>
+                    <img src="empereur.png">
+                </div>
+                <div class="bg-slate-800 border-2 border-slate-600 hover:border-amber-500 hover:-translate-y-1 transition-all p-4 rounded-xl text-center cursor-pointer shadow-md flex flex-col items-center justify-center h-28">
+                    <span class="font-bold text-rose-400 mt-1">Esclave</span>
+                    <img src="esclave.png">
+                </div>
+            </div>
+        </section>
+
+    </main>
+      <h2 style="color: rgb(255, 0, 0);">N'OUBLIEZ PAS</h2>
+    <p style="color: rgb(255, 0, 0);">Lorsque l'Esclave vainc l'Empereur,le gagnant reçoit 5 points</p>
+
+    <footer class="shadow p-4 text-center text-sm text-gray-600" style="color: rgb(255, 255, 255); border: 100px; border-style: initial;">
         <p>&copy; 2026 - Projet De El Mehdi En-nia</p>
     </footer>
+</body>
 </html>
