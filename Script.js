@@ -1,1 +1,1 @@
-document.getElementById("MonNom").onclick 
+document.getElementById();
