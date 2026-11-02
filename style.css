@@ -1,0 +1,21 @@
+body{
+    background-color: rgb(0, 0, 0);
+    font-family:Arial, Helvetica, sans-serif;
+    align-items: center;
+    justify-content: center;
+    
+}
+.press-start-2p-regular {
+  font-size: medium;
+  font-weight: 400;
+  font-style: normal;
+  flex-direction: column;
+  flex-wrap: wrap;
+  
+  
+}
+h1{
+    position: relative;
+    width: max-content;
+    background-color: rgb(0, 0, 255);
+}
