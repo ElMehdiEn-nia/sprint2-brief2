@@ -1,6 +1,7 @@
  document.getElementById(nickname);
  document.getElementById(avatar);
 export function getData(key) {
+    
     const data = localStorage.getItem(key);
     return data ? JSON.parse(data) : [];
 };
@@ -10,20 +11,17 @@ export function saveData(key, data) {
 };
 
 
-const PlayersKey = 'cardGamePlayers';
-const ActivePlayerKey = 'cardGameActivePlayer';
+
 const Pseudo = /^[A-Za-z0-9]{3,15}$/;
-
-
-export function getPlayers() {
-    return getData(PlayersKey);
+export function getPlayers(){
+    return getData(players);
 };
 
 
     const players = getData("players");
 
     const newPlayer = {
-        id: `p_${Date.now()}`,
+        id: "p_${Date.now()}",
         nickname,
         avatar
     };
@@ -31,29 +29,24 @@ export function getPlayers() {
    
 
 const updatedPlayers = players.map(p => {
-    if (p.id === id) {
+    if (p.id === "p_${Date.now()}"){
         return { ...p, nickname: newNickname, avatar: newAvatar };
     };
         return p;
     });
 
-    saveData(PlayersKey, updatedPlayers);
+    saveData(players,updatedPlayers);
 
 
-export function deletePlayer(id) {
-    let players = getPlayers();
-    players = players.filter(p => p.id !== id);
-    saveData(PlayersKey, players);
-};
 
 
 export function setActivePlayer(player) {
-    localStorage.setItem(ActivePlayerKey, JSON.stringify(player));
+    localStorage.setItem(ActivePlayer, JSON.stringify(player));
 };
 
 
 export function getActivePlayer() {
-    const data = localStorage.getItem(ActivePlayerKey);
+    const data = localStorage.getItem(ActivePlayer);
     return data ? JSON.parse(data) : null;
 };
 
@@ -62,6 +55,6 @@ const form = document.getElementById("profile-form")
 form.addEventListener("click",function(){
     const name = document.getElementById("nickname").value;
     const avatar = document.getElementById("avatar").value;
-    addPlayer(name,avatar)
+    getPlayers(name,avatar)
 
 });
