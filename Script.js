@@ -14,6 +14,7 @@ const PlayersKey = 'cardGamePlayers';
 const ActivePlayerKey = 'cardGameActivePlayer';
 const Pseudo = /^[A-Za-z0-9]{3,15}$/;
 
+
 export function getPlayers() {
     return getData(PlayersKey);
 };
@@ -27,10 +28,7 @@ export function getPlayers() {
         avatar
     };
 
-    players.push(newPlayer);
-    saveData("players", players);
-    return newPlayer;
-
+   
 
 const updatedPlayers = players.map(p => {
     if (p.id === id) {
@@ -48,9 +46,11 @@ export function deletePlayer(id) {
     saveData(PlayersKey, players);
 };
 
+
 export function setActivePlayer(player) {
     localStorage.setItem(ActivePlayerKey, JSON.stringify(player));
 };
+
 
 export function getActivePlayer() {
     const data = localStorage.getItem(ActivePlayerKey);
@@ -64,4 +64,4 @@ form.addEventListener("click",function(){
     const avatar = document.getElementById("avatar").value;
     addPlayer(name,avatar)
 
-})
+});
