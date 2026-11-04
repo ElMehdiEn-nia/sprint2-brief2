@@ -46,7 +46,11 @@ export function duel(carteJoueur, carteOrdinateur) {
     else {
         return "défaite";
     }
+
+    console.log("Player:", carteJoueur);
+    console.log("Computer:", carteOrdinateur);
 }
+duel("citoyen", "empereur", "esclave")
 
 export function retirerCarte(main, index) {
 
