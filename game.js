@@ -1,92 +1,72 @@
-function startGame() {
-    const score = 0;
-    return score
-}
-function selectCart(card) {
-    playerCard = card;
-}
-
-export function choisirCarteAleatoire(main) {
-
-    const index = Math.floor(Math.random() * main.length);
-
-    return {
-        carte: main[index],
-        index: index
-    };
-}
-
-
 export function creerMain(camp) {
-
     if (camp === "empereur") {
         return ["empereur", "citoyen", "citoyen", "citoyen", "citoyen"];
     }
-    else {
 
-        return ["esclave", "citoyen", "citoyen", "citoyen", "citoyen"]
+    if (camp === "esclave") {
+        return ["esclave", "citoyen", "citoyen", "citoyen", "citoyen"];
     }
+
+    return [];
 }
 
+export function choisirCarteAleatoire(main) {
+    if (main.length === 0) {
+        return null;
+    }
 
+    const index = Math.floor(Math.random() * main.length);
+
+    return main[index];
+}
 
 export function duel(carteJoueur, carteOrdinateur) {
-
     if (carteJoueur === carteOrdinateur) {
         return "égalité";
     }
 
-    else if (
-        (carteJoueur === "empereur" && carteOrdinateur === "citoyen")
-            (carteJoueur === "citoyen" && carteOrdinateur === "esclave")
-            (carteJoueur === "esclave" && carteOrdinateur === "empereur")
+    if (
+        (carteJoueur === "empereur" && carteOrdinateur === "citoyen") ||
+        (carteJoueur === "citoyen" && carteOrdinateur === "esclave") ||
+        (carteJoueur === "esclave" && carteOrdinateur === "empereur")
     ) {
         return "victoire";
     }
-    else {
-        return "défaite";
+
+    return "défaite";
+}
+
+export function retirerCarte(main, carte) {
+    const index = main.indexOf(carte);
+
+    if (index === -1) {
+        return [...main];
     }
 
-    console.log("Player:", carteJoueur);
-    console.log("Computer:", carteOrdinateur);
-}
-duel("citoyen", "empereur", "esclave")
+    const nouvelleMain = [...main];
+    nouvelleMain.splice(index, 1);
 
-export function retirerCarte(main, index) {
-
-    return main.filter((carte, i) => i !== index);
-
+    return nouvelleMain;
 }
 
 export function calculerPoints(camp) {
-
     if (camp === "empereur") {
         return 1;
     }
-    else if (camp === "esclave") {
+
+    if (camp === "esclave") {
         return 5;
     }
 
+    return 0;
 }
 
 export function obtenirCamp(manche) {
-
     const groupe = Math.floor((manche - 1) / 3);
 
-    if (groupe % 2 === 0) {
-        return "empereur";
-    }
-
-    return "esclave";
+    return groupe % 2 === 0 ? "empereur" : "esclave";
 }
 
 export function obtenirPremierJoueur(numeroDuel) {
-
-    if (numeroDuel % 2 === 1) {
-        return "empereur";
-    }
-
-    return "esclave";
+    return numeroDuel % 2 === 1 ? "empereur" : "esclave";
 }
-
-console.log(startGame());

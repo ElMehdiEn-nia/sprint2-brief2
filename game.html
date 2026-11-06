@@ -3,50 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dans le jeu</title>
+    <title>Jouer - Empereur, Citoyen, Esclave</title>
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
-<body  class="bg-black text-slate-100 min-h-screen flex flex-col justify-between font-sans">
-     <header class="bg-amber-900 border-b border-white p-4 shadow-md">
-        <div class="max-w-md mx-auto flex justify-between items-center">
-            <h1 class="text-lg font-bold text-amber-400">Empereur, Citoyen, Esclave</h1>
-        </div>
+
+<body class="bg-gray-900 text-white min-h-screen">
+
+    <header class="bg-amber-900 p-4 text-center">
+        <h1 class="text-2xl font-bold text-amber-300">
+            Empereur, Citoyen, Esclave
+        </h1>
+        <p id="player-name" class="mt-2"></p>
     </header>
-     <main class="bg-black    transition-all  rounded-xl text-center  shadow-md flex flex-col items-center justify-center">
 
-    </main>
-    <main class="bg-mist-600   transition-all  rounded-xl text-center  shadow-md flex flex-col items-center justify-center h-52">
+    <main class="max-w-4xl mx-auto p-5 space-y-6">
 
-    </main>
-    <main class="max-w-md mx-auto p-8 w-full flex flex-col  space-y-6 border-b-blue-600 ">
-     <section class="space-y-3">
-         <div class="flex  gap-3">
-            <div class="bg-slate-800 border-2 w-[300px] border-slate-600 hover:border-blue-700 hover:-translate-y-1 transition-all  rounded-xl text-center cursor-pointer shadow-md flex flex-col items-center justify-center h-50">  
-                <span class="font-bold text-blue-700 ">Citoyen</span>
-                <img src="../assets/images/citoyen.png" class="rounded-xl">
+        <div class="flex justify-between items-center gap-3">
+            <a href="./index.html" class="bg-gray-700 px-4 py-2 rounded-lg">
+                ← Retour
+            </a>
+
+            <p class="text-amber-300 font-bold">
+                Manche : <span id="manche">1</span> / 12
+            </p>
+        </div>
+
+        <section class="bg-slate-800 rounded-xl p-5 text-center">
+            <h2 class="text-xl font-bold text-amber-300">Scores</h2>
+
+            <div class="flex justify-around mt-4">
+                <p>Joueur : <span id="player-score">0</span></p>
+                <p>Ordinateur : <span id="computer-score">0</span></p>
             </div>
-             <div class="bg-slate-800 border-2 w-[300px] border-slate-600 hover:border-blue-700 hover:-translate-y-1 transition-all  rounded-xl text-center cursor-pointer shadow-md flex flex-col items-center justify-center h-50">  
-                    <span class="font-bold text-blue-700 ">Citoyen</span>
-                    <img src="../assets/images/citoyen.png" class="rounded-xl">
-             </div>
-            <div class="bg-slate-800 border-2 w-[300px] border-slate-600 hover:border-blue-700 hover:-translate-y-1 transition-all  rounded-xl text-center cursor-pointer shadow-md flex flex-col items-center justify-center h-50">  
-                <span class="font-bold text-blue-700 ">Citoyen</span>
-                <img src="../assets/images/citoyen.png" class="rounded-xl">
-            </div>
-            <div class="bg-slate-800 border-2 w-[300px] border-slate-600 hover:border-blue-700 hover:-translate-y-1 transition-all  rounded-xl text-center cursor-pointer shadow-md flex flex-col items-center justify-center h-50">  
-                <span class="font-bold text-blue-700 ">Citoyen</span>
-                <img src="../assets/images/citoyen.png" class="rounded-xl">
-            </div>
-              <div class="bg-slate-800 border-2 w-[300px] border-slate-600 hover:border-amber-400 hover:-translate-y-1 transition-all  rounded-xl text-center cursor-pointer shadow-md flex flex-col items-center justify-center h-50">
-                    <span class="font-bold text-amber-400 ">Empereur</span>
-                    <img src="../assets/images/empereur.png" class="rounded-xl">
+
+            <p id="camps" class="mt-4 text-sm text-amber-200"></p>
+        </section>
+
+        <section class="bg-slate-800 rounded-xl p-5">
+            <h2 class="text-center text-xl font-bold mb-4">
+                Cartes de l'ordinateur
+            </h2>
+
+            <div class="flex justify-center">
+                <div class="text-center">
+                    <img id="computer-image"
+                         src="./assets/images/citoyen.png"
+                         alt="Carte ordinateur"
+                         class="w-32 h-40 object-cover rounded-xl border-2 border-amber-400">
+
+                    <p id="computer-choice" class="mt-2">En attente...</p>
                 </div>
-                    
-         </div>
-     </section> 
-                    
+            </div>
+        </section>
+
+        <section class="bg-slate-800 rounded-xl p-5">
+            <h2 class="text-center text-xl font-bold mb-4">
+                Choisis ta carte
+            </h2>
+
+            <div id="player-cards"
+                 class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+            </div>
+        </section>
+
+        <section class="bg-black rounded-xl p-5 text-center">
+            <p id="result" class="text-lg font-bold text-amber-300">
+                Choisis une carte pour commencer !
+            </p>
+
+            <button id="next-manche"
+                    class="hidden mt-4 bg-yellow-400 text-black font-bold px-5 py-3 rounded-lg">
+                Manche suivante
+            </button>
+
+            <button id="restart"
+                    class="hidden mt-4 bg-green-600 px-5 py-3 rounded-lg font-bold">
+                Recommencer
+            </button>
+        </section>
+
     </main>
-                    
-  <script type="module" src="../src/game.js"></script> 
+
+    <script type="module" src="./src/game-page.js"></script>
 </body>
 </html>

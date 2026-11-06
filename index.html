@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empereur, Citoyen, Esclave</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-900 text-slate-100 min-h-screen flex flex-col justify-between font-sans">
 
@@ -13,9 +14,10 @@
             <h1 class="text-lg font-bold text-amber-400">Empereur, Citoyen, Esclave</h1>
         </div>
     </header>
+   
+<script type="module" src="../src/main.js"></script>
 
     <main class="max-w-md mx-auto p-4 w-full flex flex-col justify-center space-y-6 border-b-blue-600 bg-black">
-         <audio autoplay loop src="WhatsApp Audio 2026-10-29 at 12.49.55.mp4"></audio>
          <h1 style="color: rgb(255, 255, 255); background-color: rgb(102, 102, 102);" ><b>LES REGLES DU JEU</b></h1>
          <ol>
             <li style="color:gold;"> *Le Citoyen vainc l'Esclave.</li>
@@ -28,54 +30,78 @@
             <li style="color:gold;"> *Celui qui a le plus de points à la fin gagne.</li>
          </ol>
      <br><br>
-        <section class="bg-orange-950 p-6 rounded-xl shadow-lg border border-slate-700">
-            <h2 class="text-xl font-semibold mb-4 text-center text-slate-200">Créer un profil</h2>
-            <form id="profile-form" class="space-y-4">
-                <div>
-                    <label for="nickname" class="block text-sm font-medium mb-1" style="color: gold;">Ton pseudo</label>
-                    <input type="text" id="nickname" required 
-                           class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
-                           placeholder="Le pseudo doit etre entre 3 et 15 lettres et chiffres">
-                    <p id="error-message" class="text-rose-500 text-xs mt-1 hidden">Le pseudo doit contenir entre 3 et 15 caractères (lettres, chiffres).</p>
-                    <br><br>
-                     <label for="avatar" class="block text-sm font-medium mb-1" style="color: gold;"
-                           placeholder="Ton pseudo">Ton Avatar</label>
-                <select name="" id="" class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all">
-                    <option value="👻">👻</option>
-                    <option value="👑">👑</option>
-                    <option value="⚔️">⚔️</option>
-                    <option value="🛡️">🛡️</option>
-                    <option value="🦊">🦊</option>
-                    <option value="🐺">🐺</option>
-                    <option value="🐉">🐉</option>
-                    <option value="🦁">🦁</option>
-                </select>
-                </div>
-         
-                <button type="submit" class="w-full bg-yellow-400 hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 font-semibold py-2.5 rounded-lg text-slate-950 transition-all shadow-md disabled:bg-slate-600 disabled:cursor-not-allowed disabled:text-slate-400"> Enregistrer le profil
-                </button>
-               
-            </form>
-        </section>
+     <section class="bg-orange-950 p-6 rounded-xl shadow-lg border border-slate-700">
+    <h2 class="text-xl font-semibold mb-4 text-center text-slate-200">
+        Créer un profil
+    </h2>
+<a href="./game.html"
+   class="block text-center bg-yellow-400 hover:bg-amber-500 text-black font-bold p-3 rounded-lg">
+    🎮 Jouer maintenant
+</a>
+    <form id="profile-form" class="space-y-4">
+        <div>
+            <label for="nickname" class="block text-sm font-medium mb-1 text-amber-400">
+                Ton pseudo
+            </label>
 
-        <section class="space-y-3">
-            <h3 class="text-sm font-semibold text-white uppercase tracking-wider text-center">Les cartes disponibles pour jouer</h3>
-            <div class="grid grid-cols-3 gap-3">
-                <div class="bg-slate-800 border-2 border-slate-600 hover:border-blue-700 hover:-translate-y-1 transition-all  rounded-xl text-center cursor-pointer shadow-md flex flex-col items-center justify-center h-50">
-                    
-                    <span class="font-bold text-blue-700 ">Citoyen</span>
-                    <img src="citoyen.png" class="rounded-xl">
-                </div>
-                <div class="bg-slate-800 border-2 border-slate-600 hover:border-amber-400 hover:-translate-y-1 transition-all  rounded-xl text-center cursor-pointer shadow-md flex flex-col items-center justify-center h-50">
-                    <span class="font-bold text-amber-400 ">Empereur</span>
-                    <img src="empereur.png" class="rounded-xl">
-                </div>
-                <div class="bg-slate-800 border-2 border-slate-600 hover:border-rose-700 hover:-translate-y-1 transition-all  rounded-xl text-center cursor-pointer shadow-md flex flex-col items-center justify-center h-50">
-                    <span class="font-bold text-rose-700 ">Esclave</span>
-                    <img src="esclave.png" class="rounded-xl">
-                </div>
-            </div>
-        </section>
+            <input
+                type="text"
+                id="nickname"
+                required
+                minlength="3"
+                maxlength="15"
+                class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-2 text-white"
+                placeholder="Entre 3 et 15 lettres ou chiffres"
+            >
+
+            <p id="error-message" class="text-rose-500 text-xs mt-1 hidden"></p>
+
+            <label for="avatar" class="block text-sm font-medium mb-1 mt-4 text-amber-400">
+                Ton avatar
+            </label>
+
+            <select
+                id="avatar"
+                class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-2 text-white"
+            >
+                <option value="👻">👻</option>
+                <option value="👑">👑</option>
+                <option value="⚔️">⚔️</option>
+                <option value="🛡️">🛡️</option>
+                <option value="🦊">🦊</option>
+                <option value="🐺">🐺</option>
+                <option value="🐉">🐉</option>
+                <option value="🦁">🦁</option>
+            </select>
+        </div>
+
+        <button
+            id="submit-button"
+            type="submit"
+            class="w-full bg-yellow-400 hover:bg-amber-600 font-semibold py-2.5 rounded-lg text-slate-950"
+        >
+            Enregistrer le profil
+        </button>
+
+        <button
+            id="cancel-edit"
+            type="button"
+            class="hidden w-full bg-gray-600 hover:bg-gray-700 font-semibold py-2 rounded-lg"
+        >
+            Annuler la modification
+        </button>
+    </form>
+</section>
+
+<section class="space-y-3">
+    <h2 class="text-lg font-semibold text-center text-amber-400">
+        Mes profils
+    </h2>
+
+    <p id="current-player" class="text-center text-green-400"></p>
+
+    <div id="profile-list" class="space-y-3"></div>
+</section>
 
     </main>
     <br><br>
@@ -84,6 +110,6 @@
     <footer class="shadow p-4 text-center text-sm text-gray-600" style="color: rgb(255, 255, 255); border: 100px; border-style: initial;">
         <p>&copy; 2026 - Projet De El Mehdi En-nia</p>
     </footer>
-    <script src="./Script.js"></script>
+    <script type="module" src="./src/main.js"></script>
 </body>
 </html>
