@@ -1,59 +1,93 @@
-import { getData , saveData } from "./storage.js";
+import { getData, saveData } from "./storage.js";
 
-const Pseudo = /^[A-Za-z0-9]{3,15}$/;
+const PLAYERS_KEY = "players";
+const ACTIVE_PLAYER_KEY = "activePlayer";
 
-export function getPlayers(){
-    return getData("players");
-};
+const pseudoRegex = /^[A-Za-z0-9]{3,15}$/;
 
+export function getPlayers() {
+    return getData(PLAYERS_KEY);
+}
 
-    const players = getData("players");
+export function ajouterJoueur(nickname, avatar) {
+    const players = getPlayers();
 
-    const newPlayer = {
-        id: "p_${Date.now()}",
-        nickname,
-        avatar
-    };
-  
-
-const updatedPlayers = players.map(p => {
-    if (p.id === "p_${Date.now()}"){
-      
-        return p;
-    }   
-    });
-
-    saveData(players,updatedPlayers);
-
-
-
-
-export function setActivePlayer(player) {
-    localStorage.setItem(ActivePlayer, JSON.stringify(player));
-};
-
-
-export function getActivePlayer() {
-    const data = localStorage.getItem(ActivePlayer);
-    return data ? JSON.parse(data) : null;
-};
-
-
-const form = document.getElementById("profile-form");
-form.addEventListener("submit",function(e){
-
-    
-
-    const nickname = document.getElementById("nickname").value().trim;
-    const avatar = document.getElementById("avatar").value().trim;
-
-    const player = {
-        name : nickname,
-        Avatar : avatar
+    if (!pseudoRegex.test(nickname)) {
+        return "Le pseudo doit contenir entre 3 et 15 lettres ou chiffres.";
     }
 
-    players.push(player)
+    const existe = players.some(
+        player => player.nickname.toLowerCase() === nickname.toLowerCase()
+    );
 
-    saveData(data,players);
+    if (existe) {
+        return "Ce pseudo existe déjà.";
+    }
 
-});
+    const newPlayer = {
+        id: Date.now().toString(),
+        nickname: nickname,
+        avatar: avatar
+    };
+
+    players.push(newPlayer);
+    saveData(PLAYERS_KEY, players);
+
+    return newPlayer;
+}
+
+export function modifierJoueur(id, nickname, avatar) {
+    const players = getPlayers();
+
+    if (!pseudoRegex.test(nickname)) {
+        return "Le pseudo doit contenir entre 3 et 15 lettres ou chiffres.";
+    }
+
+    const existe = players.some(
+        player =>
+            player.nickname.toLowerCase() === nickname.toLowerCase() &&
+            player.id !== id
+    );
+
+    if (existe) {
+        return "Ce pseudo existe déjà.";
+    }
+
+    const updatedPlayers = players.map(player => {
+        if (player.id === id) {
+            return { ...player, nickname, avatar };
+        }
+
+        return player;
+    });
+
+    saveData(PLAYERS_KEY, updatedPlayers);
+
+    return true;
+}
+
+export function supprimerJoueur(id) {
+    const players = getPlayers();
+
+    const updatedPlayers = players.filter(
+        player => player.id !== id
+    );
+
+    saveData(PLAYERS_KEY, updatedPlayers);
+
+    if (getActivePlayer()?.id === id) {
+        localStorage.removeItem(ACTIVE_PLAYER_KEY);
+    }
+}
+
+export function setActivePlayer(player) {
+    localStorage.setItem(
+        ACTIVE_PLAYER_KEY,
+        JSON.stringify(player)
+    );
+}
+
+export function getActivePlayer() {
+    const data = localStorage.getItem(ACTIVE_PLAYER_KEY);
+    return data ? JSON.parse(data) : null;
+}

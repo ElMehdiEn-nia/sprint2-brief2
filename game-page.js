@@ -1,4 +1,4 @@
-import {creerMain,choisirCarteAleatoire,duel,retirerCarte,calculerPoints,obtenirCamp} from "./game.js";
+import { creerMain, choisirCarteAleatoire, duel, retirerCarte, calculerPoints, obtenirCamp } from "./game.js";
 
 const playerName = document.getElementById("player-name");
 const playerCards = document.getElementById("player-cards");
@@ -16,15 +16,20 @@ const campsElement = document.getElementById("camps");
 const nextButton = document.getElementById("next-manche");
 const restartButton = document.getElementById("restart");
 
-const images = {citoyen: "./assets/images/citoyen.png",empereur: "./assets/images/empereur.png",esclave: "./assets/images/esclave.png"};
+const images = { citoyen: "./assets/images/citoyen.png", empereur: "./assets/images/empereur.png", esclave: "./assets/images/esclave.png" };
 
 const activePlayer = JSON.parse(
     localStorage.getItem("activePlayer")
 );
 
-playerName.textContent = activePlayer
-    ? `${activePlayer.avatar} ${activePlayer.nickname}`
-    : "Joueur invité";
+if (!activePlayer) {
+    alert("Veuillez choisir un profil avant de jouer !");
+    window.location.href = "./index.html";
+}
+else {
+    playerName.textContent =
+        `${activePlayer.avatar} ${activePlayer.nickname}`;
+}
 
 let manche = 1;
 let scoreJoueur = 0;
